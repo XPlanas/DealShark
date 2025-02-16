@@ -1,7 +1,9 @@
-import { API_CONFIG } from './config.js';
+require('dotenv').config();
 
-
-
+let API_CONFIG = {
+    RAPIDAPI_KEY: process.env.RAPIDAPI_KEY,
+    RAPIDAPI_HOST: process.env.RAPIDAPI_HOST
+};
 
 async function fetchGiveaway() {
     const platform = document.getElementById('platformSelector').value;
@@ -64,7 +66,7 @@ function displayGiveaways(giveaways) {
                     Get It Free
                 </button>
             </a>
-            <div class="text-green-400 text-2xl font-bold mt-3">${giveaway.worth}</div>
+            <div class="text-green-400 text-2xl font-bold mt-3">Worth:${giveaway.worth}</div>
             <div class="text-yellow-200 text-sm mt-2">Platforms: ${giveaway.platforms}</div>
             <div class="text-yellow-200 text-sm">Status: ${giveaway.status}</div>
             <div class="text-yellow-200 text-sm mt-2">Published: ${giveaway.published_date}</div>
@@ -76,8 +78,6 @@ function displayGiveaways(giveaways) {
 
 
 
-// funcion global 
-window.fetchGiveaway = fetchGiveaway;
 
 fetchGiveaway();
 
