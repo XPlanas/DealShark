@@ -1,8 +1,6 @@
-require('dotenv').config();
-
 let API_CONFIG = {
-    RAPIDAPI_KEY: process.env.RAPIDAPI_KEY,
-    RAPIDAPI_HOST: process.env.RAPIDAPI_HOST
+    RAPIDAPI_KEY: window.env.RAPIDAPI_KEY || 'default-key',
+    RAPIDAPI_HOST: window.env.RAPIDAPI_HOST || 'default-host'
 };
 
 async function fetchGiveaway() {
@@ -75,9 +73,6 @@ function displayGiveaways(giveaways) {
         container.appendChild(card);
     });
 }
-
-
-
 
 fetchGiveaway();
 
