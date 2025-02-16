@@ -1,6 +1,6 @@
 let API_CONFIG = {
-    RAPIDAPI_KEY: window.env.RAPIDAPI_KEY || 'default-key',
-    RAPIDAPI_HOST: window.env.RAPIDAPI_HOST || 'default-host'
+    RAPIDAPI_KEY: window.env.RAPIDAPI_KEY ,
+    RAPIDAPI_HOST: window.env.RAPIDAPI_HOST 
 };
 
 async function fetchGiveaway() {
