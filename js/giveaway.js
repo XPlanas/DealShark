@@ -1,16 +1,13 @@
-let API_CONFIG = {
-    RAPIDAPI_KEY: window.env.RAPIDAPI_KEY ,
-    RAPIDAPI_HOST: window.env.RAPIDAPI_HOST 
-};
+import { RAPIDAPI_KEY, RAPIDAPI_HOST } from './config.js';
 
-async function fetchGiveaway() {
+ async function fetchGiveaway() {
     const platform = document.getElementById('platformSelector').value;
     const url = `https://gamerpower.p.rapidapi.com/api/filter?platform=${platform === 'all' ? 'any' : platform}&type=game.loot`;
     const options = {
         method: 'GET',
         headers: {
-            'x-rapidapi-key': API_CONFIG.RAPIDAPI_KEY,
-            'x-rapidapi-host': API_CONFIG.RAPIDAPI_HOST
+            'x-rapidapi-key': RAPIDAPI_KEY,
+            'x-rapidapi-host': RAPIDAPI_HOST
         }
     };
     
@@ -73,6 +70,8 @@ function displayGiveaways(giveaways) {
         container.appendChild(card);
     });
 }
+
+window.fetchGiveaway = fetchGiveaway;
 
 fetchGiveaway();
 
