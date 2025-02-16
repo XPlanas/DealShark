@@ -76,7 +76,7 @@ function displayGiveaways(giveaways) {
 
 
 
-// funcion global 
+// funcion global ncesaria 
 window.fetchGiveaway = fetchGiveaway;
 
 fetchGiveaway();

@@ -86,7 +86,7 @@ function displayDeals(deals) {
         `;
         container.appendChild(dealCard);
     });
-    // Add event listeners after creating the cards
+    
     document.querySelectorAll('.more-info-btn').forEach(button => {
         button.addEventListener('click', () => {
             const dealId = button.getAttribute('data-deal-id');
