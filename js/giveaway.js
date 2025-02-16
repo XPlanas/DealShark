@@ -1,4 +1,4 @@
-import { RAPIDAPI_KEY, RAPIDAPI_HOST } from './config.js';
+import { RAPIDAPI_KEY, RAPIDAPI_HOST } from '../config.js';
 
  async function fetchGiveaway() {
     const platform = document.getElementById('platformSelector').value;
