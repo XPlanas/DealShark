@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JEFF the dealshark</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/index.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="imgs/jeff_business.png">
+</head>
+
+<body class="bg-gradient-to-b from-blue-900 to-indigo-800 p-5">
+    <nav class="bg-gradient-to-r from-blue-800 to-indigo-800 shadow-lg mb-5 rounded-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center" href="index.html">
+                    <img src="imgs/jeff_business.png" alt="jeff"
+                        class="w-14 h-14 mr-4 rounded-full border-4 border-yellow-400">
+                    <h1 class="text-4xl mb-5 mt-5 font-['Bangers'] text-yellow-400">Jeff the DealShark</h1>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="index.html"
+                        class="relative text-yellow-200 hover:text-yellow-400 px-6 py-3 rounded-lg text-lg font-bold bg-gradient-to-r from-blue-800/50 to-indigo-800/50 hover:from-blue-800/70 hover:to-indigo-800/70 transition-all duration-300 border-2 border-yellow-400/30 hover:border-yellow-400/80 shadow-lg hover:shadow-yellow-400/30 transform hover:scale-105 group">
+                        <span class="relative z-10">Deals</span>
+                        <span class="absolute inset-0 bg-yellow-400/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                    </a>
+                    <a href="giveaway.html"   
+                        class="relative text-yellow-200 hover:text-yellow-400 px-6 py-3 rounded-lg text-lg font-bold bg-gradient-to-r from-blue-800/50 to-indigo-800/50 hover:from-blue-800/70 hover:to-indigo-800/70 transition-all duration-300 border-2 border-yellow-200/30 hover:border-yellow-400/50 shadow-lg hover:shadow-yellow-400/30 transform hover:scale-105 group">
+                        <span class="relative z-10">Giveaways</span>
+                        <span class="absolute inset-0 bg-yellow-400/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                    </a>
+                    <a href="alerts.html"
+                        class="relative text-yellow-200 hover:text-yellow-400 px-6 py-3 rounded-lg text-lg font-bold bg-gradient-to-r from-blue-800/50 to-indigo-800/50 hover:from-blue-800/70 hover:to-indigo-800/70 transition-all duration-300 border-2 border-yellow-200/30 hover:border-yellow-400/50 shadow-lg hover:shadow-yellow-400/30 transform hover:scale-105 group">
+                        <span class="relative z-10">Alerts</span>
+                        <span class="absolute inset-0 bg-yellow-400/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <h2 class="text-5xl text-yellow-400 drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)] font-['Bangers'] text-center mb-8">Game Deals</h2>
+
+    <div
+        class="flex flex-row gap-4 mb-5 max-w-2xl mx-auto bg-white/10 p-6 rounded-lg shadow-lg backdrop-blur-sm items-center justify-between">
+        <div class="relative">
+            <input type="text" id="searchInput" placeholder="Search deals   ..."
+                class="w-64 px-4 py-2 rounded-lg bg-blue-400/10 text-yellow-200 placeholder-yellow-200/50 border-2 border-yellow-200/20 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent"
+                onkeydown="if(event.key === 'Enter') searchGames()">
+            <button onclick="searchGames()"
+                class="absolute right-2 top-1/2 transform -translate-y-1/2 text-yellow-200 hover:text-yellow-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd"
+                        d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                        clip-rule="evenodd" />
+                </svg>
+            </button>
+        </div>
+        <div class="flex items-center">
+            <label for="storeSelector" class="font-semibold text-yellow-400">Select Store:</label>
+            <select id="storeSelector" onchange="fetchDeals()"
+                class="ml-4 p-2 border-2 border-yellow-200/30 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400 bg-white/10 text-black">
+                <option value="0">Any Store</option>
+                <option value="1">Steam</option>
+                <option value="25">Epic Games</option>
+                <option value="7">GOG</option>
+                <option value="4">Origin</option>
+                <option value="13">Ubisoft</option>
+            </select>
+        </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5" id="dealsContainer"></div>
+    <br>
+    <div class="flex flex-col gap-4 mb-5 max-w-xs mx-auto bg-white/10 p-6 rounded-lg shadow-lg backdrop-blur-sm">
+        <div class="flex justify-between items-center">
+            <label for="resultCount" class="font-semibold text-yellow-400">Results to show:</label>
+            <select id="resultCount" onchange="fetchDeals()"
+                class="ml-4 p-2 border-2 border-yellow-200/30 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400 bg-white/10 text-black">
+                <option value="20">20</option>
+                <option value="40" selected>40</option>
+                <option value="60">60</option>
+                <option value="100">100</option>
+                <option value="100">200</option>
+                <option value="100">300</option>
+            </select>
+        </div>
+    </div>
+
+    <footer class="mt-10 py-6 text-center text-yellow-400/80 border-t border-yellow-400/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="text-sm mt-2 ">Powered by <a href="https://www.cheapshark.com/" target="_blank" class="hover:text-yellow-400 underline">CheapShark API</a> & <a href="https://www.gamerpower.com/" target="_blank" class="hover:text-yellow-400 underline">GamerPower API</a></p>
+            <p class="text-sm mt-1 ">Made by <a href="https://github.com/XPlanas" target="_blank" class="hover:text-yellow-400 underline">Xplanas</a></p>
+        </div>
+    </footer>
+</body>
+
+</html>

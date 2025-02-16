@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JEFF the dealshark</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/alerts.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="imgs/jeff_business.png">
+</head>
+
+<body class="bg-gradient-to-b from-blue-900 to-indigo-800 p-5" onload="initializeForm()">
+    <nav class="bg-gradient-to-r from-blue-800 to-indigo-800 shadow-lg mb-5 rounded-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center" href="index.html">
+                    <img src="imgs/jeff_business.png" alt="jeff"
+                        class="w-14 h-14 mr-4 rounded-full border-4 border-yellow-400">
+                    <h1 class="text-4xl mb-5 mt-5 font-['Bangers'] text-yellow-400">Jeff the DealShark</h1>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="index.html"
+                        class="relative text-yellow-200 hover:text-yellow-400 px-6 py-3 rounded-lg text-lg font-bold bg-gradient-to-r from-blue-800/50 to-indigo-800/50 hover:from-blue-800/70 hover:to-indigo-800/70 transition-all duration-300 border-2 border-yellow-200/30 hover:border-yellow-400/50 shadow-lg hover:shadow-yellow-400/30 transform hover:scale-105 group">
+                        <span class="relative z-10">Deals</span>
+                        <span
+                            class="absolute inset-0 bg-yellow-400/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                    </a>
+                    <a href="giveaway.html"
+                        class="relative text-yellow-200 hover:text-yellow-400 px-6 py-3 rounded-lg text-lg font-bold bg-gradient-to-r from-blue-800/50 to-indigo-800/50 hover:from-blue-800/70 hover:to-indigo-800/70 transition-all duration-300 border-2 border-yellow-200/30 hover:border-yellow-400/50 shadow-lg hover:shadow-yellow-400/30 transform hover:scale-105 group">
+                        <span class="relative z-10">Giveaways</span>
+                        <span
+                            class="absolute inset-0 bg-yellow-400/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                    </a>    
+                    <a href="alerts.html"
+                        class="relative text-yellow-200 hover:text-yellow-400 px-6 py-3 rounded-lg text-lg font-bold bg-gradient-to-r from-blue-800/50 to-indigo-800/50 hover:from-blue-800/70 hover:to-indigo-800/70 transition-all duration-300 border-2 border-yellow-400/30 hover:border-yellow-400/80 shadow-lg hover:shadow-yellow-400/30 transform hover:scale-105 group">
+                        <span class="relative z-10">Alerts</span>
+                        <span
+                            class="absolute inset-0 bg-yellow-400/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <h2 class="text-5xl text-yellow-400 drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)] font-['Bangers'] text-center mb-8">Game alerts</h2>
+
+    <div class="max-w-4xl mx-auto space-y-6">
+        <div class="bg-blue-800/50 p-6 rounded-lg shadow-lg">
+            <h3 class="text-2xl text-yellow-400 font-['Bangers'] mb-4">New Alert</h3> 
+            <form id="alertForm" class="space-y-4">
+                <input type="email" id="email" placeholder="Your Email" class="w-full p-2 rounded bg-blue-900 text-yellow-200 border border-yellow-400/30 focus:border-yellow-400/50 focus:ring-1 focus:ring-yellow-400/50">
+                <input type="text" id="gameID" placeholder="Game ID" class="w-full p-2 rounded bg-blue-900 text-yellow-200 border border-yellow-400/30 focus:border-yellow-400/50 focus:ring-1 focus:ring-yellow-400/50">
+                <input type="number" id="price" placeholder="Max Price (USD)" class="w-full p-2 rounded bg-blue-900 text-yellow-200 border border-yellow-400/30 focus:border-yellow-400/50 focus:ring-1 focus:ring-yellow-400/50">
+                <div class="text-sm text-yellow-200/80 mt-1">Note: Price is only required when creating alerts, not deleting</div>
+                <div class="flex space-x-4">
+                    <button type="button" onclick="createAlert()" class="flex-1 bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded transition duration-300">Create</button>
+                    <button type="button" onclick="deleteAlert()" class="flex-1 bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded transition duration-300">Delete Alert</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="bg-blue-800/50 p-6 rounded-lg shadow-lg">
+            <h3 class="text-2xl text-yellow-400 font-['Bangers'] mb-4">Manage Alert from link </h3>
+            <p class="text-yellow-200 mb-4">You will receive a link in your email to manage your alerts.</p>
+            <form id="statusForm" class="space-y-4">
+                <input type="email" id="statusEmail" placeholder="Your Email" class="w-full p-2 rounded bg-blue-900 text-yellow-200 border border-yellow-400/30 focus:border-yellow-400/50 focus:ring-1 focus:ring-yellow-400/50">
+                <button type="button" onclick="ManageAlert()" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded transition duration-300">Send link</button>
+            </form>
+        </div>
+
+        <div class="bg-blue-800/50 p-6 rounded-lg shadow-lg">
+            <h3 class="text-2xl text-yellow-400 font-['Bangers'] mb-4">Get Deal Alerts</h3>
+            <form id="getAlertsForm" class="space-y-4">
+                <div class="mb-2 text-yellow-200/80 text-sm">You can find your Alert ID in the link sent to your email - it's the "key" parameter</div>
+                <input type="text" id="alertID" placeholder="Alert ID" class="w-full p-2 rounded bg-blue-900 text-yellow-200 border border-yellow-400/30 focus:border-yellow-400/50 focus:ring-1 focus:ring-yellow-400/50">
+                <div class="flex space-x-4">
+                    <button type="button" onclick="getDealAlerts()" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded transition duration-300">Get Alerts</button>
+                </div>
+            <div id="alertsContainer" class="mt-4 space-y-2"></div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="mt-10 py-6 text-center text-yellow-400/80 border-t border-yellow-400/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="text-sm mt-2 ">Powered by <a href="https://www.cheapshark.com/" target="_blank" class="hover:text-yellow-400 underline">CheapShark API</a> & <a href="https://www.gamerpower.com/" target="_blank" class="hover:text-yellow-400 underline">GamerPower API</a></p>
+            <p class="text-sm mt-1 ">Made by <a href="https://github.com/XPlanas" target="_blank"
+                    class="hover:text-yellow-400 underline">Xplanas</a></p>
+        </div>
+    </footer>
+</body>
+
+</html>
