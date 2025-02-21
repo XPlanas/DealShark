@@ -23,26 +23,6 @@ async function fetchGiveaway() {
     }
 }
 
-async function fetchDealInfo(dealId) {
-    try {
-        if (!dealId) {
-            throw new Error('Invalid deal ID');
-        }
-
-        const url = `https://www.cheapshark.com/api/1.0/games?id=${dealId}`;
-        const response = await fetch(url);
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const deal = await response.json();
-        
-        return deal;
-    } catch (error) {
-        console.error('Error fetching deal info:', error);
-    }
-}
 
 function displayGiveaways(giveaways) {
     const container = document.getElementById('dealsContainer');
