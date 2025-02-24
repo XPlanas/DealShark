@@ -105,7 +105,7 @@ async function showDealModal(gameID) {
     const deal = await fetchGameInfo(gameID);
     if (!deal) return;
     
-    modal.className = 'fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-50';
+    modal.className = 'fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-50 opacity-0 transition-opacity duration-300';
     modal.innerHTML = `
         <div class="bg-gradient-to-b from-blue-900/90 to-indigo-900/90 rounded-lg shadow-lg w-full max-w-2xl p-6 relative border-2 border-yellow-200/20">
             <button onclick="this.closest('.fixed').remove()" class="absolute top-4 right-4 text-yellow-200 hover:text-yellow-400 text-2xl">
@@ -157,6 +157,10 @@ async function showDealModal(gameID) {
         </div>
     `;
     document.body.appendChild(modal);
+    
+    setTimeout(() => {
+        modal.classList.remove('opacity-0');
+    }, 10);
 }
 
 function searchGames() {

@@ -1,5 +1,4 @@
-import { API_CONFIG } from './config.js';
-
+import { RAPIDAPI_KEY, RAPIDAPI_HOST } from '../config.js';
 
 
 
@@ -9,8 +8,8 @@ async function fetchGiveaway() {
     const options = {
         method: 'GET',
         headers: {
-            'x-rapidapi-key': API_CONFIG.RAPIDAPI_KEY,
-            'x-rapidapi-host': API_CONFIG.RAPIDAPI_HOST
+            'x-rapidapi-key': RAPIDAPI_KEY,
+            'x-rapidapi-host': RAPIDAPI_HOST
         }
     };
     
@@ -45,6 +44,7 @@ function displayGiveaways(giveaways) {
                 </button>
             </a>
             <div class="text-green-400 text-2xl font-bold mt-3">${giveaway.worth}</div>
+            <div class="text-yellow-200 text-lg font-semibold">Type: ${giveaway.type}</div>
             <div class="text-yellow-200 text-sm mt-2">Platforms: ${giveaway.platforms}</div>
             <div class="text-yellow-200 text-sm">Status: ${giveaway.status}</div>
             <div class="text-yellow-200 text-sm mt-2">Published: ${giveaway.published_date}</div>
