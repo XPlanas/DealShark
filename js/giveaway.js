@@ -4,7 +4,8 @@ import { RAPIDAPI_KEY, RAPIDAPI_HOST } from '../config.js';
 
 async function fetchGiveaway() {
     const platform = document.getElementById('platformSelector').value;
-    const url = `https://gamerpower.p.rapidapi.com/api/filter?platform=${platform === 'all' ? 'any' : platform}&type=game.loot`;
+    const type = document.getElementById('typeSelector').value;
+    const url = `https://gamerpower.p.rapidapi.com/api/giveaways?${platform === 'any' ? '' : `platform=${platform}`}${type === 'any' ? '' : `&type=${type}`}`;
     const options = {
         method: 'GET',
         headers: {
