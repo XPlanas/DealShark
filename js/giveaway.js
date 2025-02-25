@@ -27,7 +27,9 @@ async function fetchGiveaway() {
 function displayGiveaways(giveaways) {
     const container = document.getElementById('dealsContainer');
     container.innerHTML = '';
-    
+    if (giveaways.status==0){
+        container.innerHTML = '<div class="flex justify-center items-center h-full"><h2 class="text-yellow-400 text-center text-xl p-4">No giveaways.</h2></div>';
+    }else{
     giveaways.forEach(giveaway => {
         const card = document.createElement('div');
         card.className = 'bg-white/10 backdrop-blur-sm rounded-lg shadow-lg p-6 border-2 border-yellow-400/60 hover:border-yellow-400 transition-all';
@@ -53,6 +55,7 @@ function displayGiveaways(giveaways) {
         `;
         container.appendChild(card);
     });
+}
 }
 
 
