@@ -47,7 +47,8 @@
     <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-3 sm:mb-5 max-w-2xl mx-auto bg-white/10 p-4 sm:p-6 rounded-lg shadow-lg backdrop-blur-sm items-center justify-between">
         <div class="relative w-full sm:w-auto">
             <input type="text" id="searchInput" placeholder="Search deals..."
-                class="w-full sm:w-64 px-3 sm:px-4 py-2 rounded-lg bg-blue-400/10 text-yellow-200 placeholder-yellow-200/50 border-2 border-yellow-200/20 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent">
+                class="w-full sm:w-64 px-3 sm:px-4 py-2 rounded-lg bg-blue-400/10 text-yellow-200 placeholder-yellow-200/50 border-2 border-yellow-200/20 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent"
+                onkeypress="if(event.key === 'Enter') searchGames()">
             <button onclick="searchGames()"
                 class="absolute right-2 top-1/2 transform -translate-y-1/2 text-yellow-200 hover:text-yellow-500">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -59,7 +60,7 @@
         </div>
         <div class="flex flex-col sm:flex-row items-center w-full sm:w-auto mt-3 sm:mt-0">
             <label for="storeSelector" class="font-semibold text-yellow-400 mb-2 sm:mb-0">Select Store:</label>
-            <select id="storeSelector" onchange="fetchDeals()"
+            <select id="storeSelector" onchange="searchGames()"
                 class="w-full sm:w-auto ml-0 sm:ml-4 p-2 border-2 border-yellow-200/30 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400 bg-white/10 text-black">
                 <option value="0">Any Store</option>
                 <option value="1">Steam</option>
@@ -75,7 +76,7 @@
     <div class="flex flex-col gap-3 sm:gap-4 mb-3 sm:mb-5 max-w-xs mx-auto bg-white/10 p-4 sm:p-6 rounded-lg shadow-lg backdrop-blur-sm">
         <div class="flex justify-between items-center">
             <label for="resultCount" class="font-semibold text-yellow-400">Results to show:</label>
-            <select id="resultCount" onchange="fetchDeals()"
+            <select id="resultCount" onchange="searchGames()"
                 class="ml-4 p-2 border-2 border-yellow-200/30 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400 bg-white/10 text-black">
                 <option value="20" selected>20</option>
                 <option value="40">40</option>

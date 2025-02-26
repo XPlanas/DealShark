@@ -1,4 +1,5 @@
 let storeMap = {};
+let isSearching = false;
 
 async function fetchStores() {
     try {
@@ -42,6 +43,7 @@ async function fetchDeals() {
     } catch (error) {
         console.error('Error:', error);
     }
+    isSearching = false;
 }
 
 async function fetchGameInfo(gameID) {
@@ -164,7 +166,10 @@ async function showDealModal(gameID) {
 }
 
 function searchGames() {
-    fetchDeals();
+    if (isSearching) return;
+    isSearching = true;
+
+        fetchDeals();
 }
 
 
