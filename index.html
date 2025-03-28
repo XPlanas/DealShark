@@ -7,6 +7,7 @@
     <title>JEFF the dealshark</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="js/index.js" defer></script>
+    <script src="js/conversion.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
@@ -38,6 +39,14 @@
                         <span class="relative z-10">Alerts</span>
                         <span class="absolute inset-0 bg-yellow-400/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                     </a>
+                </div>
+                <div class="flex items-center ml-0 sm:ml-4 mt-3 sm:mt-0">
+                    <label for="currencySelector" class="font-semibold text-yellow-400 mr-2">Currency:</label>
+                    <select id="currencySelector" onchange="searchGames()"
+                        class="p-2 border-2 border-yellow-200/30 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400 bg-white/10 text-black">
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                    </select>
                 </div>
             </div>
         </div>

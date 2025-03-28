@@ -1,6 +1,21 @@
 let storeMap = {};
 let isSearching = false;
+const exchangeRates = JSON.parse(decodeURIComponent(document.cookie.split('; ').find(row => row.startsWith('currentExchange='))?.split('=')[1] || '{}'))
+function exchange(price){
+    const currencySelector = document.getElementById("currencySelector")
+    
+    const currentExchange = exchangeRates[currencySelector.value]
+const currencySymbols = {
+    'USD': '$',
+    'EUR': '€',
+    'GBP': '£',
+    'JPY': '¥'
+};
+// const result = (Math.floor(price * currentExchange * 100) / 100)+currencySymbols[currencySelector.value]
+const result = price+currencySymbols[currencySelector.value]
 
+return result
+}
 async function fetchStores() {
     try {
         const response = await fetch('https://www.cheapshark.com/api/1.0/stores');
@@ -83,7 +98,7 @@ function displayDeals(deals) {
             <button data-deal-id="${deal.gameID}" class="more-info-btn w-full mt-2 bg-blue-900/30 text-yellow-200 py-2 px-4 rounded-lg hover:bg-blue-900/50 transition-colors border-2 border-yellow-400/50 hover:border-yellow-400 hover:shadow-lg hover:shadow-yellow-400/20">
                 More Info
             </button>
-            <div class="text-green-400 text-2xl font-bold mt-3">$${deal.salePrice}</div>
+            <div class="text-green-400 text-2xl font-bold mt-3">${exchange(deal.salePrice)}</div>
             <div class="text-red-300 text-sm">Save ${Math.round(deal.savings)}%</div>
         `;
         container.appendChild(dealCard);
@@ -122,8 +137,8 @@ async function showDealModal(gameID) {
                 <div>
                     <h2 class="text-2xl font-bold mb-4 text-yellow-400">${deal.info.title}</h2>
                     <div class="space-y-2">
-                        ${deal.deals[0].retailPrice !== deal.cheapestPriceEver ? `<p class="text-yellow-200">Original Price: $${deal.deals[0].retailPrice}</p>` : ''}
-                        ${deal.deals[0].price ? `<p class="text-green-400 font-bold text-xl">Cheapest Price: $${deal.deals[0].price} at ${storeMap[deal.deals[0].storeID] || `Store ${deal.deals[0].storeID}`}</p>` : ''}
+                        ${deal.deals[0].retailPrice !== deal.cheapestPriceEver ? `<p class="text-yellow-200">Original Price: ${exchange(deal.deals[0].retailPrice)}</p>` : ''}
+                        ${deal.deals[0].price ? `<p class="text-green-400 font-bold text-xl">Cheapest Price: ${exchange(deal.deals[0].price)} at ${storeMap[deal.deals[0].storeID] || `Store ${deal.deals[0].storeID}`}</p>` : ''}
                     </div>
                     <br>
                                             <a href="/alerts.html?gameID=${gameID}" class="bg-purple-500 text-white px-6 py-2 rounded-lg hover:bg-purple-600 transition-colors font-semibold text-center sm:text-left">
@@ -137,7 +152,7 @@ async function showDealModal(gameID) {
                                 <div class="flex justify-between text-yellow-200">
                                     <span>${storeMap[store.storeID] || `Store ${store.storeID}`}</span>
                                     <a href="https://www.cheapshark.com/redirect?dealID=${store.dealID}" target="_blank" class="text-yellow-400 hover:text-yellow-500 underline">View Deal</a>
-                                    <span class="text-green-400">$${store.price}</span>
+                                    <span class="text-green-400">${exchange(store.price)}</span>
                                 </div>
                             `).join('')}
                         </div>

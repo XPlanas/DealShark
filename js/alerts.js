@@ -28,7 +28,6 @@ async function createAlert() {
     
     const response = await fetch(`${API_BASE}?action=set&email=${email}&gameID=${gameID}&price=${price}`);
     const data = await response.json();
-    console.log('Alert created:', data);
 }
 async function deleteAlert() {
     const email = document.getElementById('email').value;
@@ -36,7 +35,6 @@ async function deleteAlert() {
     
     const response = await fetch(`${API_BASE}?action=delete&email=${email}&gameID=${gameID}`);
     const data = await response.json();
-    console.log('Alert deleted:', data);
 }
 
 async function ManageAlert() {
@@ -44,7 +42,6 @@ async function ManageAlert() {
     
     const response = await fetch(`${API_BASE}?action=manage&email=${email}`);
     const data = await response.json();
-    console.log('Alert status toggled:', data);
 }
  
 async function getDealAlerts() {
@@ -52,7 +49,6 @@ async function getDealAlerts() {
     
     const response = await fetch(`${API_BASE}?action=get&key=${key}`);
     const data = await response.json();
-    console.log('Deal alerts:', data);
     
     const alertsContainer = document.getElementById('alertsContainer');
     alertsContainer.innerHTML = '';
